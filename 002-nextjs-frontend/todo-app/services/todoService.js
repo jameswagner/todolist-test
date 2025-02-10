@@ -1,4 +1,5 @@
 const API_URL = process.env.NEXT_PUBLIC_API_URL;
+console.log("API URL:", API_URL); // Debug log
 
 export const todoService = {
     async getAllTodos(completed) {
@@ -6,7 +7,9 @@ export const todoService = {
         if (completed !== undefined) {
             path = `/todos?completed=${completed}`;
         }
-        const res = await fetch(`${API_URL}${path}`);
+        const fullUrl = `${API_URL}${path}`;
+        console.log("Fetching from:", fullUrl); // Debug log
+        const res = await fetch(fullUrl);
         return res.json();
     },
 
